@@ -19,7 +19,4 @@ public abstract class BasePage {
         passwordInput.sendKeys(ConfigurationReader.getProperty("passwordLibrarian"));
         submitButton.click();
     }
-
-
-
 }
