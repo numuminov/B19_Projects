@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.sql.Driver;
 
-public class LoginPage {
+public class LoginPage extends  BasePage {
     @FindBy(id = "inputEmail")
     private WebElement usernameElement;
 
@@ -60,7 +60,7 @@ public class LoginPage {
     public WebElement searchBox;
 
 
-    @FindBy(xpath = "//table[@id='tbl_books']//td[.='Rhonda Byrne']")
+    @FindBy(xpath = "//table[@id='tbl_books']//td[.='Rhondan Byrne']")
     public WebElement finalConfirmation;
 
     @FindBy(id = "book_categories")
@@ -78,14 +78,10 @@ public class LoginPage {
 
     @FindBy(xpath = "//div[@class='toast toast-success']")
     public WebElement bookHasBeenUpdated;
-    //*****************************************************************************************************************
-    //*****************************************************************************************************************
-    //*****************************************************************************************************************
 
     public void getDriver(){
        driver.driver().get(ConfigurationReader.getProperty("url"));
         driver.driver().manage().window().maximize();
-
     }
 
     public void login(){
@@ -129,7 +125,7 @@ public class LoginPage {
         bookNameInput.sendKeys("Secret");
         ISBN.sendKeys("123431");
         year.sendKeys("2000");
-        author.sendKeys("Rhonda Byrne");
+        author.sendKeys("Rhondan Byrne");
         description.sendKeys("Good book");
         selectCategory();
         waitMethod(2);
@@ -138,9 +134,9 @@ public class LoginPage {
         System.out.println("=================================Confirmation=====================================================");
         waitMethod(3);
 
-        searchBox.sendKeys("Rhonda"+ Keys.ENTER);
-        waitMethod(3);
+        searchBox.sendKeys("Rhondan"+ Keys.ENTER);
+        waitMethod(4);
         Assert.assertTrue(finalConfirmation.isDisplayed());
-        driver.driver().quit();
+
     }
 }
