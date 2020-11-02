@@ -10,32 +10,28 @@ import java.util.concurrent.TimeUnit;
 public class driver {
     private static WebDriver driver;
 
-    private driver() {}
+    private driver() {
+    }
 
-    public static WebDriver driver() {
-        if (driver == null) {
-            String browser = ConfigurationReader.getProperty("browser");
-            switch (browser) {
+    public static WebDriver driver(){
+        if(driver==null){
+            String browser=ConfigurationReader.getProperty("browser");
+            switch (browser){
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    driver= new ChromeDriver();
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
+                    driver=new FirefoxDriver();
                     break;
                 default:
-                    throw new RuntimeException("No such a browser yet!");
+                    throw new RuntimeException("Driver is not setup");
+
             }
         }
-        driver.manage().window().maximize();
+
         return driver;
     }
 
-    public static void closeDriver() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
-        }
-    }
 }

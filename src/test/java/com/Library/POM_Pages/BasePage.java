@@ -1,12 +1,22 @@
 package com.Library.POM_Pages;
 
-import com.Utilities.driver;
-import org.openqa.selenium.support.PageFactory;
+import com.Utilities.ConfigurationReader;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-import java.sql.Driver;
+public abstract class BasePage {
+    @FindBy(id="inputEmail")
+    private WebElement usernameInput;
 
-public class BasePage {
-    public BasePage(){
-        PageFactory.initElements(driver.driver(), this);
+    @FindBy(id="inputPassword")
+    private WebElement passwordInput;
+
+    @FindBy(xpath = "//button")
+    private WebElement submitButton;
+
+    public void librarianLogin(){
+        usernameInput.sendKeys(ConfigurationReader.getProperty("userLibrarian"));
+        passwordInput.sendKeys(ConfigurationReader.getProperty("passwordLibrarian"));
+        submitButton.click();
     }
 }
